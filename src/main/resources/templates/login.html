@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+
+
+</head>
+<body>
+
+<h2>About Page</h2>
+
+<div th:replace="${isLogin} ? ~{base::parent(~{::#login})} : ~{base::test(~{::#notLogin})}">
+
+    <section id="login">
+        <h1>Login</h1>
+    </section>
+
+
+
+
+    <section id="notLogin">
+        <h1>Not Login</h1>
+    </section>
+
+
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

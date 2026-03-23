@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en"
+      th:fragment="parent(content,title)"
+      xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title data-th-replace="${title}">GC Cloud</title>
+    <link rel="stylesheet" data-th-href="@{'/css/main.css'}">
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div th:replace="${content}"></div>
+</body>
+<script src="../path/to/flowbite/dist/flowbite.min.js"></script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<div th:fragment="parent(x)">-->
+<!--        &lt;!&ndash; dynamic content &ndash;&gt;-->
+<!--        <div th:replace="${x}"></div>-->
+<!--</div>-->
+
+<!--<div th:fragment="test(content)">-->
+<!--   <div th:replace="${content}"></div>-->
+<!--</div>-->
