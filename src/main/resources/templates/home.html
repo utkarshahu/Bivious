@@ -1,28 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{base :: parent(~{::#content}, ~{::title}, ~{::style})}">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Gradient Home</title>
-    <link rel="stylesheet" data-th-href="@{'/css/main.css'}">
-    <link href="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.css" rel="stylesheet" />
+    <title>Home</title>
 
-
+    <!-- Style Fragment -->
+    <th:block th:fragment="style">
+        <link rel="stylesheet" th:href="@{/css/home.css}">
+    </th:block>
 </head>
+
 <body>
-<div class="page">
 
+<!-- ✅ ONLY THIS WILL BE SENT -->
+<section id="content">
+    <h1>Welcome to Home</h1>
+    <h2>Get in touch with GC Cloud</h2>
+    <p>
+        GC Cloud is always ready to assist you with your queries.
+    </p>
+</section>
 
-    <a href="#" class="bg-neutral-primary-soft block max-w-sm p-6 border border-default rounded-base shadow-xs hover:bg-neutral-secondary-medium">
-        <h5 class="mb-3 text-2xl font-semibold tracking-tight text-heading leading-8">Noteworthy technology acquisitions 2021</h5>
-        <p class="text-body">Here are the biggest technology acquisitions of 2025 so far, in reverse chronological order.</p>
-    </a>
-
-
-
-</div>
 </body>
-
-<script src="../path/to/flowbite/dist/flowbite.min.js"></script>
-
 </html>

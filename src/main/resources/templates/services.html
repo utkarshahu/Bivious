@@ -1,14 +1,26 @@
-
 <!doctype html>
-<html lang="en" th:replace="~{base ::parent(~{::#services},~{::title})}">
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{base :: parent(~{::#content}, ~{::title}, ~{::style})}">
+
 <head>
     <title>Services</title>
+
+    <!-- Style Fragment -->
+    <th:block th:fragment="style">
+        <link rel="stylesheet" th:href="@{/css/services.css}">
+    </th:block>
 </head>
+
 <body>
-    <section id="services">
-        <h1>Welcome to Services</h1>
-        <h2>Services offered by GC Cloud</h2>
-        <p>GC Cloud Services provides scalable, secure, and high-performance cloud solutions designed to empower modern businesses. From seamless deployment to advanced data management, we ensure reliability, flexibility, and innovation at every step.</p>
-    </section>
+
+<!-- ✅ ONLY THIS WILL BE SENT -->
+<section id="content">
+    <h1>Welcome to Services</h1>
+    <h2>Services offered by GC Cloud</h2>
+    <p>
+        GC Cloud is always ready to assist you with your queries.
+    </p>
+</section>
+
 </body>
 </html>

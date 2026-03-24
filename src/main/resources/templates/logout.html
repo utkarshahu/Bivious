@@ -1,14 +1,26 @@
-
 <!doctype html>
-<html lang="en" th:replace="~{base ::parent(~{::#logout})}">
-<head></head>
-<body>
-<section id="logout">
-    <h1>You have been logged out</h1>
-    <p>Thank you for using GC Cloud.</p>
-    <p>You can log in again anytime to continue using our services.</p>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{base :: parent(~{::#content}, ~{::title}, ~{::style})}">
 
-    <button class="h-2 w-0.5 bg-black"> <a href="/login">Login Again</a></button>
+<head>
+    <title>Logout</title>
+
+    <!-- Style Fragment -->
+    <th:block th:fragment="style">
+        <link rel="stylesheet" th:href="@{/css/logout.css}">
+    </th:block>
+</head>
+
+<body>
+
+<!-- ✅ ONLY THIS WILL BE SENT -->
+<section id="content">
+    <h1>Welcome to Logout</h1>
+    <h2>You have been logged out</h2>
+    <p>
+        GC Cloud is always ready to assist you with your queries.
+    </p>
 </section>
+
 </body>
 </html>

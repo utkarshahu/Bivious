@@ -14,7 +14,7 @@ public class PageController {
         model.addAttribute("visualRating","4.9/5");
         model.addAttribute("isLogin",true);
         System.out.println("my first home page start");
-        return "login";
+        return "about";
     }
 
     @RequestMapping("/services")

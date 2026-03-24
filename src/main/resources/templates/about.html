@@ -1,0 +1,35 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{base :: parent(~{::#content}, ~{::title}, ~{::script})}">
+
+<head>
+    <title>About</title>
+</head>
+
+<body>
+
+<!-- ✅ ONLY THIS WILL BE SENT -->
+<section id="content">
+    <h1>Welcome to About</h1>
+    <h2>Learn more about GC Cloud</h2>
+    <p>
+        GC Cloud is always ready to assist you with your queries.
+    </p>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    console.log("Script of aboutPage")
+</script>
+</body>
+
+</html>

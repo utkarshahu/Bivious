@@ -1,61 +1,26 @@
 <!doctype html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{base :: parent(~{::#content}, ~{::title}, ~{::style})}">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About</title>
+    <title>Login</title>
 
-
+    <!-- Style Fragment -->
+    <th:block th:fragment="style">
+        <link rel="stylesheet" th:href="@{/css/login.css}">
+    </th:block>
 </head>
+
 <body>
 
-<h2>About Page</h2>
-
-<div th:replace="${isLogin} ? ~{base::parent(~{::#login})} : ~{base::test(~{::#notLogin})}">
-
-    <section id="login">
-        <h1>Login</h1>
-    </section>
-
-
-
-
-    <section id="notLogin">
-        <h1>Not Login</h1>
-    </section>
-
-
-</div>
+<!-- ✅ ONLY THIS WILL BE SENT -->
+<section id="content">
+    <h1>Welcome to Login</h1>
+    <h2>Please log in to your account</h2>
+    <p>
+        GC Cloud is always ready to assist you with your queries.
+    </p>
+</section>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
