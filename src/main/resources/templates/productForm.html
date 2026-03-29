@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add Product</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gradient-to-br from-gray-950 via-gray-900 to-black text-white min-h-screen flex items-center justify-center p-6">
+
+<div class="bg-white/5 backdrop-blur-lg border border-white/10 
+            p-8 rounded-2xl w-full max-w-3xl shadow-2xl">
+
+  <h1 class="text-3xl font-bold text-center mb-6">
+    Add Product
+  </h1>
+
+  <div class="space-y-4">
+
+    <input id="model" placeholder="Model" class="input">
+    <input id="name" placeholder="Name" class="input">
+    <input id="category" placeholder="Category" class="input">
+    <textarea id="description" placeholder="Description" class="input"></textarea>
+
+    <div>
+      <p class="mb-3 text-gray-300">Select Tags</p>
+      <div id="tags-container" class="flex flex-wrap gap-3"></div>
+    </div>
+
+    <button onclick="submitForm()" 
+      class="w-full bg-gradient-to-r from-blue-500 to-purple-600 
+             py-3 rounded-xl font-semibold hover:scale-105 transition">
+      Submit Product
+    </button>
+
+  </div>
+
+</div>
+
+<script>
+const tags = [
+"MICROSCOPY","CENTRIFUGATION","SPECTROSCOPY","PCR",
+"WEIGHING","STERILIZATION","GLASSWARE","CHROMATOGRAPHY",
+"MEASUREMENT","INCUBATION","CENTRIFUGES_ROTORS_ACCESSORIES",
+"HEATING_EQUIPMENT","WATER_PURIFICATION_SYSTEMS","CO2_INCUBATORS",
+"BENCHTOP_LAB_ESSENTIALS","WATER_ANALYSIS_INSTRUMENTS",
+"COLD_STORAGE_SOLUTIONS","SHAKERS","TEMPERATURE_CONTROL",
+"BIOLOGICAL_SAFETY_CABINETS","CONNECTED_SOLUTIONS"
+];
+
+const selected = new Set();
+const container = document.getElementById("tags-container");
+
+tags.forEach(tag => {
+  const btn = document.createElement("button");
+
+  btn.innerText = tag.replaceAll("_", " ");
+  btn.className = "tag-btn";
+
+  btn.onclick = () => {
+    if(selected.has(tag)){
+      selected.delete(tag);
+      btn.classList.remove("active");
+    } else {
+      selected.add(tag);
+      btn.classList.add("active");
+    }
+  };
+
+  container.appendChild(btn);
+});
+
+async function submitForm() {
+
+  const product = {
+    model: document.getElementById("model").value,
+    name: document.getElementById("name").value,
+    category: document.getElementById("category").value,
+    description: document.getElementById("description").value,
+    categoryTags: Array.from(selected)
+  };
+
+  await fetch("http://localhost:8080/api/products", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(product)
+  });
+
+  alert("Product Added Successfully 🚀");
+}
+</script>
+
+<style>
+.input {
+  width: 100%;
+  padding: 12px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  color: white;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #3b82f6;
+}
+
+.tag-btn {
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.05);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.tag-btn:hover {
+  transform: scale(1.05);
+}
+
+.tag-btn.active {
+  background: linear-gradient(to right, #3b82f6, #8b5cf6);
+}
+</style>
+
+</body>
+</html>

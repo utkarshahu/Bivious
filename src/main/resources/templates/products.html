@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Products</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gradient-to-br from-gray-950 via-gray-900 to-black text-white min-h-screen p-10">
+
+<h1 class="text-4xl font-bold text-center mb-10 tracking-wide">
+  Product Catalog
+</h1>
+
+<div id="container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8"></div>
+
+<script>
+async function loadProducts() {
+
+  const res = await fetch("http://localhost:8080/api/products");
+  const products = await res.json();
+
+  const container = document.getElementById("container");
+  container.innerHTML = "";
+
+  products.forEach(p => {
+
+    const card = document.createElement("div");
+    card.className = `
+      bg-white/5 backdrop-blur-lg border border-white/10 
+      rounded-2xl overflow-hidden shadow-lg 
+      hover:scale-105 hover:shadow-2xl transition duration-300
+    `;
+
+    card.innerHTML = `
+      <img src="${p.picture}" 
+           onerror="this.src='https://via.placeholder.com/300'"
+           class="w-full h-44 object-cover">
+
+      <div class="p-5 space-y-2">
+
+        <h2 class="text-xl font-semibold">${p.name}</h2>
+
+        <p class="text-gray-400 text-sm line-clamp-2">
+          ${p.description}
+        </p>
+
+        <div class="text-sm text-gray-300 mt-2">
+          <p><span class="text-gray-400">Model:</span> ${p.model}</p>
+          <p><span class="text-gray-400">Category:</span> ${p.category}</p>
+        </div>
+
+        <div class="flex flex-wrap gap-2 mt-3">
+          ${p.categoryTags.map(tag => 
+            `<span class="bg-gradient-to-r from-blue-500 to-purple-500 text-xs px-3 py-1 rounded-full">
+              ${tag}
+            </span>`
+          ).join("")}
+        </div>
+
+        <button onclick="deleteProduct(${p.productId})"
+          class="mt-4 w-full bg-gradient-to-r from-red-500 to-pink-500 
+                 hover:opacity-90 py-2 rounded-lg font-medium transition">
+          Delete
+        </button>
+
+      </div>
+    `;
+
+    container.appendChild(card);
+  });
+}
+
+async function deleteProduct(id) {
+  if(!confirm("Are you sure?")) return;
+
+  await fetch(`http://localhost:8080/api/products/${id}`, {
+    method: "DELETE"
+  });
+
+  loadProducts();
+}
+
+loadProducts();
+</script>
+
+</body>
+</html>
